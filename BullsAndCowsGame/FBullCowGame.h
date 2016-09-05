@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+using namespace std;
+
 class FBullCowGame { //Unreal naming convention
 public:
 	FBullCowGame();
@@ -8,7 +10,7 @@ public:
 	bool IsGameWon() const;
 
 	void Reset(); //TODO: make better return value
-	bool CheckGuessValidity(std::string); //TODO: make better return value
+	bool CheckGuessValidity(string); //TODO: make better return value
 
 
 private:

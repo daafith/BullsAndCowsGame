@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "FBullCowGame.h"
+using namespace std;
 
 FBullCowGame::FBullCowGame() { Reset(); }
 
@@ -19,7 +20,7 @@ void FBullCowGame::Reset() {
 	return;
 }
 
-bool FBullCowGame::CheckGuessValidity(std::string) {
+bool FBullCowGame::CheckGuessValidity(string) {
 
 	return false;
 }
