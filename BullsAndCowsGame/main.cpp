@@ -38,15 +38,17 @@ void PrintIntro() {
 void PlayGame() {
 	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
-	std::cout << "You have " << MaxTries << " tries in total" << std::endl;
+	std::cout << "You have " << MaxTries << " tries in total\n";
 
 	// TODO change from for to while loop
 	for (int32 i = 1; i <= MaxTries; i++) {
 		FText Guess = GetGuess();//TODO make loop check for valid guess
 
 		// Sumbit valid guess to the game
+		FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
 		// print number of bulls and cows
-		std::cout << "You typed: " << Guess << std::endl;
+		std::cout << "Bulls = " << BullCowCount.Bulls;
+		std::cout << " Cows = " << BullCowCount.Cows << std::endl;
 		std::cout << std::endl;
 	}
 	//TODO add a game summary

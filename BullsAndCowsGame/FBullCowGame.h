@@ -4,7 +4,7 @@ using FString = std::string; // FString is mutable
 using int32 = int;
 
 // all values are zero
-struct BullCowCount
+struct FBullCowCount
 {
 	int32 Bulls = 0;
 	int32 Cows = 0;
@@ -19,7 +19,7 @@ public:
 
 	void Reset(); //TODO make better return value
 	bool CheckGuessValidity(FString); //TODO make better return value
-	BullCowCount SubmitGuess(FString);
+	FBullCowCount SubmitGuess(FString);
 
 private:
 	// see constructor for initialisation
