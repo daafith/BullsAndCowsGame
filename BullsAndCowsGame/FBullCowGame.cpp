@@ -12,10 +12,10 @@ bool FBullCowGame::IsGameWon() const {
 }
 
 void FBullCowGame::Reset() {
-	constexpr int MAX_TRIES = 8;
+	constexpr int MAX_TRIES = 8; // constant expr because literal
 	MyMaxTries = MAX_TRIES;
 
-	const FString HIDDEN_WORD = "planet";
+	const FString HIDDEN_WORD = "planet"; // const because reference
 	MyHiddenWord = HIDDEN_WORD;
 
 	MyCurrentTry = 1;
