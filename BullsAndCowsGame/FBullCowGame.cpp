@@ -25,10 +25,10 @@ void FBullCowGame::Reset()
 }
 
 
-bool FBullCowGame::CheckGuessValidity(FString) const 
+EWordStatus FBullCowGame::CheckGuessValidity(FString) const 
 {
 
-	return false;
+	return EWordStatus::OK;  // TODO make status depend on validity
 }
 
 // counts bulls and cows and increases try #, assumes valid guess

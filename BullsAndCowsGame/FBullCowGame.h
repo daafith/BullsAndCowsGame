@@ -10,6 +10,14 @@ struct FBullCowCount
 	int32 Cows = 0;
 };
 
+enum class EWordStatus
+{
+	OK,
+	Not_Isogram,
+	Wrong_Length,
+	Not_Lowercase
+};
+
 class FBullCowGame 
 { //Unreal naming convention
 public:
@@ -18,8 +26,8 @@ public:
 	int32 GetCurrentTry() const;
 	int32 GetHiddenWordLength() const;
 	bool IsGameWon() const;
-	bool CheckGuessValidity(FString) const; //TODO make better return value
 
+	EWordStatus CheckGuessValidity(FString) const; 
 	void Reset(); //TODO make better return value
 	FBullCowCount SubmitGuess(FString);
 
