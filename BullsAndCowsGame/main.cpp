@@ -17,7 +17,8 @@ bool AskToPlayAgain();
 
 FBullCowGame BCGame; // create the instance
 
-int main() {
+int main() 
+{
 	bool bPlayAgain = false;
 	do {
 		PrintIntro();
@@ -27,15 +28,16 @@ int main() {
 	return 0;
 }
 
-void PrintIntro() {
-	constexpr int32 WORD_LENGTH = 9;
+void PrintIntro() 
+{
 	std::cout << "Welcome to Bulls and Cows, a fun word game.\n"; // << endl instead is OK
-	std::cout << "Can you guess the " << WORD_LENGTH;
+	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
 	std::cout << " letter isogram I'm thinking of?\n";
 	std::cout << std::endl;
 }
 
-void PlayGame() {
+void PlayGame() 
+{
 	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
 	std::cout << "You have " << MaxTries << " tries in total\n";
@@ -54,7 +56,8 @@ void PlayGame() {
 	//TODO add a game summary
 }
 
-FText GetGuess() {
+FText GetGuess() 
+{
 	int32 CurrentTry = BCGame.GetCurrentTry();
 	std::cout << "Try " << CurrentTry << ". Please enter your guess: ";
 	FText Guess = "";
@@ -62,7 +65,8 @@ FText GetGuess() {
 	return Guess;
 }
 
-bool AskToPlayAgain() {
+bool AskToPlayAgain() 
+{
 	std::cout << "Do you want to play again (y/n)? ";
 	FText Response = "";
 	std::getline(std::cin, Response);

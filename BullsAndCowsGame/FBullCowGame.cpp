@@ -6,23 +6,27 @@ FBullCowGame::FBullCowGame() { Reset(); }
 int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 
-bool FBullCowGame::IsGameWon() const {
+int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 
+bool FBullCowGame::IsGameWon() const 
+{
 	return false;
 }
 
-void FBullCowGame::Reset() {
+void FBullCowGame::Reset() 
+{
 	constexpr int MAX_TRIES = 8; // constant expr because literal
+	const FString HIDDEN_WORD = "foobar"; // const because reference
+
 	MyMaxTries = MAX_TRIES;
-
-	const FString HIDDEN_WORD = "and"; // const because reference
 	MyHiddenWord = HIDDEN_WORD;
-
 	MyCurrentTry = 1;
 	return;
 }
 
-bool FBullCowGame::CheckGuessValidity(FString) {
+
+bool FBullCowGame::CheckGuessValidity(FString) const 
+{
 
 	return false;
 }
@@ -45,10 +49,7 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
 				else {
 					BullCowCount.Cows++;
 				}
-
 			}
-				// if in the same place -->increment bulls
-				// if in the word but different place --> increment bulls
 		}
 	}
 

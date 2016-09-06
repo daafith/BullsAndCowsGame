@@ -10,15 +10,17 @@ struct FBullCowCount
 	int32 Cows = 0;
 };
 
-class FBullCowGame { //Unreal naming convention
+class FBullCowGame 
+{ //Unreal naming convention
 public:
 	FBullCowGame();
 	int32 GetMaxTries() const;
 	int32 GetCurrentTry() const;
+	int32 GetHiddenWordLength() const;
 	bool IsGameWon() const;
+	bool CheckGuessValidity(FString) const; //TODO make better return value
 
 	void Reset(); //TODO make better return value
-	bool CheckGuessValidity(FString); //TODO make better return value
 	FBullCowCount SubmitGuess(FString);
 
 private:
