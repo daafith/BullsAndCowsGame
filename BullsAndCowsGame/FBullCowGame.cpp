@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "FBullCowGame.h"
+#include <map>
+#define TMap std::map;
+
 
 FBullCowGame::FBullCowGame() { Reset(); }
 
@@ -23,7 +26,7 @@ void FBullCowGame::Reset()
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const 
 {
-	if (false) { // no isogram (not implemented yet)
+	if (!IsIsoGram(Guess)) { // no isogram (not implemented yet)
 		return EGuessStatus::Not_Isogram;
 	}
 	else if (false) { // not lowercase (not implemented yet)
@@ -33,7 +36,13 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 		return EGuessStatus::Wrong_Length;
 	} 
 	return EGuessStatus::OK;
+}
 
+bool FBullCowGame::IsIsoGram(FString) const 
+{
+	//loop through the guess
+		// if a letter is in twice it's not an isogram
+	return true;
 }
 
 // counts bulls and cows and increases try #, assumes valid guess
@@ -62,4 +71,3 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 	}
 	return BullCowCount;
 }
-
