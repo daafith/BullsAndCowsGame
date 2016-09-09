@@ -13,6 +13,7 @@ using FText = std::string; //create alias , FText is immutable
 void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
+void PrintGameSummary();
 bool AskToPlayAgain();
 
 FBullCowGame BCGame; // create the instance
@@ -51,7 +52,8 @@ void PlayGame()
 		std::cout << "Bulls = " << BullCowCount.Bulls;
 		std::cout << " Cows = " << BullCowCount.Cows << "\n\n";
 	}
-	//TODO add a game summary
+	PrintGameSummary();
+	return;
 }
 
 FText GetValidGuess()
@@ -82,6 +84,16 @@ FText GetValidGuess()
 		std::cout << std::endl;
 	} while (Status != EGuessStatus::OK);
 	return Guess;
+}
+
+void PrintGameSummary()
+{
+	if (BCGame.IsGameWon()) {
+		std::cout << "Well done champ, you guessed the isogram!\n";
+	}
+	else {
+		std::cout << "Game over, better luck next time!\n";
+	}
 }
 
 bool AskToPlayAgain() 
