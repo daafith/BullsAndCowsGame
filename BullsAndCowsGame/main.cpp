@@ -46,12 +46,13 @@ void PlayGame()
 	for (int32 i = 1; i <= MaxTries; i++) {
 		FText Guess = GetGuess();//TODO make loop check for valid guess
 
+		EGuessStatus Status = BCGame.CheckGuessValidity(Guess);
+
 		// Sumbit valid guess to the game
 		FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
-		// print number of bulls and cows
+		
 		std::cout << "Bulls = " << BullCowCount.Bulls;
-		std::cout << " Cows = " << BullCowCount.Cows << std::endl;
-		std::cout << std::endl;
+		std::cout << " Cows = " << BullCowCount.Cows << "\n\n";
 	}
 	//TODO add a game summary
 }
