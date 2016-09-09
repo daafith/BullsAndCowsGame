@@ -12,7 +12,7 @@ using FText = std::string; //create alias , FText is immutable
 
 void PrintIntro();
 void PlayGame();
-FText GetGuess();
+FText GetValidGuess();
 bool AskToPlayAgain();
 
 FBullCowGame BCGame; // create the instance
@@ -44,9 +44,7 @@ void PlayGame()
 
 	// TODO change from for to while loop
 	for (int32 i = 1; i <= MaxTries; i++) {
-		FText Guess = GetGuess();//TODO make loop check for valid guess
-
-		EGuessStatus Status = BCGame.CheckGuessValidity(Guess);
+		FText Guess = GetValidGuess();
 
 		// Sumbit valid guess to the game
 		FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
@@ -57,13 +55,32 @@ void PlayGame()
 	//TODO add a game summary
 }
 
-FText GetGuess() 
+FText GetValidGuess()
 {
-	int32 CurrentTry = BCGame.GetCurrentTry();
-	std::cout << "Try " << CurrentTry << ". Please enter your guess: ";
-	FText Guess = "";
-	std::getline(std::cin, Guess);
-	return Guess;
+	EGuessStatus Status = EGuessStatus::Invalid_Status;
+	do {
+		int32 CurrentTry = BCGame.GetCurrentTry();
+		std::cout << "Try " << CurrentTry << ". Please enter your guess: ";
+		FText Guess = "";
+		std::getline(std::cin, Guess);
+
+		Status = BCGame.CheckGuessValidity(Guess);
+		switch (Status)
+		{
+		case EGuessStatus::Wrong_Length:
+			std::cout << "Please enter a " << BCGame.GetHiddenWordLength() << " letter isogram.\n";
+			break;
+		case EGuessStatus::Not_Isogram:
+			std::cout << "Please enter an isogram (a word without recurring letters).\n";
+			break;
+		case EGuessStatus::Not_Lowercase:
+			std::cout << "Please enter an isogram in lower case.\n";
+			break;
+		default:
+			return Guess;
+		}
+		std::cout << std::endl;
+	} while (Status != EGuessStatus::OK);
 }
 
 bool AskToPlayAgain() 
