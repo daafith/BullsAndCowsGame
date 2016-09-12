@@ -1,4 +1,4 @@
-/* main.cpp : Defines the entry point for the console application.
+﻿/* main.cpp : Defines the entry point for the console application.
 Uses the BullCow class
 Acts as the view in a MVC pattern
 */
@@ -31,7 +31,15 @@ int main()
 
 void PrintIntro() 
 {
-	std::cout << "\n\nWelcome to Bulls and Cows, a fun word game.\n"; // << endl instead is OK
+	std::cout << "\n\n";
+	std::cout << "###############################################\n";
+	std::cout << "# Welcome to Bulls and Cows, a fun word game! #\n";// << endl instead is OK
+	std::cout << "#    ( _____ )                :_____:         #\n";
+	std::cout << "#    ^( * * )^               ^( * * )^        #\n";
+	std::cout << "#      ( 0 )                   ( + )          #\n";
+	std::cout << "#        -                       -            #\n";
+	std::cout << "###############################################\n";
+	std::cout << std::endl;
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
 	std::cout << " letter isogram I'm thinking of?\n";
 	std::cout << std::endl;
@@ -43,10 +51,8 @@ void PlayGame()
 	int32 MaxTries = BCGame.GetMaxTries();
 	std::cout << "You have " << MaxTries << " tries in total\n";
 
-	// TODO change from for to while loop
 	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
 		FText Guess = GetValidGuess();
-		// Sumbit valid guess to the game
 		FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
 		
 		std::cout << "Bulls = " << BullCowCount.Bulls;
