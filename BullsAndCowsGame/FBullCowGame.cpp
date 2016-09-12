@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "FBullCowGame.h"
 #include <map>
-#define TMap std::map;
+#define TMap std::map
 
 
 FBullCowGame::FBullCowGame() { Reset(); }
@@ -26,7 +26,7 @@ void FBullCowGame::Reset()
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const 
 {
-	if (!IsIsoGram(Guess)) { // no isogram (not implemented yet)
+	if (!IsIsoGram(Guess)) { 
 		return EGuessStatus::Not_Isogram;
 	}
 	else if (false) { // not lowercase (not implemented yet)
@@ -38,8 +38,21 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 	return EGuessStatus::OK;
 }
 
-bool FBullCowGame::IsIsoGram(FString) const 
+bool FBullCowGame::IsIsoGram(FString Guess) const 
 {
+	if (Guess.length() <= 1) { return true; } // TODO do i need this? (no I don't, too defensive imho)
+	TMap<char, bool> LetterSeen;
+	for (auto Letter : Guess)
+	{
+		Letter = tolower(Letter); // TODO too defensive imho
+		if (LetterSeen[Letter]) {
+			return false;
+		} 
+		else {
+			LetterSeen[Letter] = true;
+		}
+	}
+
 	//loop through the guess
 		// if a letter is in twice it's not an isogram
 	return true;
