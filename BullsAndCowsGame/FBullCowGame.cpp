@@ -24,12 +24,13 @@ void FBullCowGame::Reset()
 }
 
 
+// implemented defensively: no implicit dependencies so the order of the decision can be changed without breaking implementation
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const 
 {
 	if (!IsIsoGram(Guess)) { 
 		return EGuessStatus::Not_Isogram;
 	}
-	else if (false) { // not lowercase (not implemented yet)
+	else if (!IsLowerCase(Guess)) {
 		return EGuessStatus::Not_Lowercase;
 	} 
 	else if (Guess.length() != GetHiddenWordLength()) {
@@ -40,11 +41,11 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 
 bool FBullCowGame::IsIsoGram(FString Guess) const 
 {
-	if (Guess.length() <= 1) { return true; } // TODO do i need this? (no I don't, too defensive imho)
+	if (Guess.length() <= 1) { return true; } 
 	TMap<char, bool> LetterSeen;
 	for (auto Letter : Guess)
 	{
-		Letter = tolower(Letter); // TODO too defensive imho
+		Letter = tolower(Letter);
 		if (LetterSeen[Letter]) {
 			return false;
 		} 
@@ -52,9 +53,15 @@ bool FBullCowGame::IsIsoGram(FString Guess) const
 			LetterSeen[Letter] = true;
 		}
 	}
+	return true;
+}
 
-	//loop through the guess
-		// if a letter is in twice it's not an isogram
+bool FBullCowGame::IsLowerCase(FString Guess) const
+{
+	for (auto Letter : Guess)
+	{
+		if (!islower(Letter)) { return false; }
+	}
 	return true;
 }
 
