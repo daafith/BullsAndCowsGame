@@ -1,9 +1,9 @@
+/*Fleshes out the details of the bull / cow game.*/
 #pragma once
 #include "stdafx.h"
 #include "FBullCowGame.h"
 #include <map>
 #define TMap std::map
-
 
 FBullCowGame::FBullCowGame() { Reset(); }
 
@@ -11,21 +11,26 @@ int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 
-int32 FBullCowGame::GetMaxTries() const { 
+FString FBullCowGame::GetHiddenWord() const 
+{
+	FString HiddenWords[] = {"vet", "ant", "pun", "pen", "bug", "fun", "link", "rain", "wait", "nerd", "bird", "train"};
+	int32 Word = rand() % (sizeof(HiddenWords) / sizeof(*HiddenWords)); // need to explain this to myself, is perhaps too psuedo random
+	return HiddenWords[Word];
+}
+
+int32 FBullCowGame::GetMaxTries() const 
+{ 
 	TMap<int32, int32> WordLengthToMaxTries = { {3,4}, {4,7}, {5,10}, {6,15}, {7,20} };
 	return WordLengthToMaxTries[GetHiddenWordLength()];
 }
 
 void FBullCowGame::Reset() 
 {
-	const FString HIDDEN_WORD = "fozbar"; // const because reference
-
-	MyHiddenWord = HIDDEN_WORD;
+	MyHiddenWord = GetHiddenWord();
 	MyCurrentTry = 1;
 	bGameIsWon = false;
 	return;
 }
-
 
 // implemented defensively: no implicit dependencies so the order of the decision can be changed without breaking implementation
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const 
@@ -42,7 +47,7 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 	return EGuessStatus::OK;
 }
 
-bool FBullCowGame::IsIsoGram(FString Guess) const 
+bool FBullCowGame::IsIsoGram(FString Guess) const
 {
 	if (Guess.length() <= 1) { return true; } 
 	TMap<char, bool> LetterSeen;
@@ -76,9 +81,7 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 	int32 WordLength = GetHiddenWordLength();
 
 	for (int32 HiddenWordCharacter = 0; HiddenWordCharacter < WordLength; HiddenWordCharacter++) {
-		// loop through the letters of hidden word
 		for (int32 GuessCharacter = 0; GuessCharacter < WordLength; GuessCharacter++) {
-			// loop through the letters of guess and compares
 			if (Guess[GuessCharacter] == MyHiddenWord[HiddenWordCharacter]) {
 				if (HiddenWordCharacter == GuessCharacter) {
 					BullCowCount.Bulls++;

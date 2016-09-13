@@ -1,3 +1,4 @@
+/*Defines the contract of the bull / cow game.*/
 #pragma once
 #include <string>
 using FString = std::string; // FString is mutable
@@ -38,6 +39,7 @@ private:
 	// see constructor for initialisation
 	int32 MyCurrentTry;
 	FString MyHiddenWord;
+	FString GetHiddenWord() const;
 	bool bGameIsWon;
 	bool IsIsoGram(FString) const;
 	bool IsLowerCase(FString) const;

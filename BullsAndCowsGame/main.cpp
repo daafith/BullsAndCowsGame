@@ -1,6 +1,5 @@
 ﻿/* main.cpp : Defines the entry point for the console application.
-Uses the BullCow class
-Acts as the view in a MVC pattern
+Uses the BullCow class and acts as the view in a MVC pattern.
 */
 
 #pragma once
@@ -50,7 +49,7 @@ void PlayGame()
 	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
 	std::cout << "You have " << MaxTries << " tries in total.\n\n";
-
+	
 	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
 		FText Guess = GetValidGuess();
 		FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
