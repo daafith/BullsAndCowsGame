@@ -14,7 +14,7 @@ bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 FString FBullCowGame::GetHiddenWord() const 
 {
 	FString HiddenWords[] = {"vet", "ant", "pun", "pen", "bug", "fun", "link", "rain", "wait", "nerd", "bird", "train"};
-	int32 Word = rand() % (sizeof(HiddenWords) / sizeof(*HiddenWords)); // need to explain this to myself, is perhaps too psuedo random
+	int32 Word = rand() % (sizeof(HiddenWords) / sizeof(*HiddenWords)); // need to explain this to myself
 	return HiddenWords[Word];
 }
 

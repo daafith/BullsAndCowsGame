@@ -31,6 +31,7 @@ int main()
 
 void PrintIntro() 
 {
+	BCGame.Reset(); // moved here instead of playgame because the constructor is called twice the first time // TODO find solution to potential bug
 	std::cout << "\n\n";
 	std::cout << "###############################################\n";
 	std::cout << "# Welcome to Bulls and Cows, a fun word game! #\n";// << endl instead is OK
@@ -46,7 +47,7 @@ void PrintIntro()
 
 void PlayGame() 
 {
-	BCGame.Reset();
+//	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
 	std::cout << "You have " << MaxTries << " tries in total.\n\n";
 	
