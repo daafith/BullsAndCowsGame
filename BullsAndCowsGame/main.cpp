@@ -10,19 +10,17 @@ Uses the BullCow class and acts as the view in a MVC pattern.
 
 using FText = std::string; //create alias , FText is immutable
 
-void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
 void PrintGameSummary();
 bool AskToPlayAgain();
 
-FBullCowGame BCGame; // create the instance
+FBullCowGame BCGame;
 
 int main() 
 {
 	bool bPlayAgain = false;
 	do {
-		PrintIntro();
 		PlayGame();
 		bPlayAgain = AskToPlayAgain();
 	} while (bPlayAgain);
@@ -31,7 +29,6 @@ int main()
 
 void PrintIntro() 
 {
-	BCGame.Reset(); // moved here instead of playgame because the constructor is called twice the first time // TODO find solution to potential bug
 	std::cout << "\n\n";
 	std::cout << "###############################################\n";
 	std::cout << "# Welcome to Bulls and Cows, a fun word game! #\n";// << endl instead is OK
@@ -47,7 +44,8 @@ void PrintIntro()
 
 void PlayGame() 
 {
-//	BCGame.Reset();
+	BCGame.Reset();
+	PrintIntro();
 	int32 MaxTries = BCGame.GetMaxTries();
 	std::cout << "You have " << MaxTries << " tries in total.\n\n";
 	
