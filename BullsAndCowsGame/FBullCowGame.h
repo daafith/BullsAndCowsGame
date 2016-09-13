@@ -3,13 +3,14 @@
 using FString = std::string; // FString is mutable
 using int32 = int;
 
-// all values are zero
+//Unreal naming convention
 struct FBullCowCount
 {
 	int32 Bulls = 0;
 	int32 Cows = 0;
 };
 
+//Unreal naming convention
 enum class EGuessStatus
 {
 	Invalid_Status,
@@ -19,8 +20,9 @@ enum class EGuessStatus
 	Not_Lowercase
 };
 
+//Unreal naming convention
 class FBullCowGame 
-{ //Unreal naming convention
+{ 
 public:
 	FBullCowGame();
 	int32 GetMaxTries() const;
@@ -35,7 +37,6 @@ public:
 private:
 	// see constructor for initialisation
 	int32 MyCurrentTry;
-	int32 MyMaxTries;
 	FString MyHiddenWord;
 	bool bGameIsWon;
 	bool IsIsoGram(FString) const;

@@ -3,6 +3,7 @@ Uses the BullCow class
 Acts as the view in a MVC pattern
 */
 
+#pragma once
 #include "stdafx.h"
 #include <iostream>
 #include <string>
@@ -42,14 +43,13 @@ void PrintIntro()
 	std::cout << std::endl;
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
 	std::cout << " letter isogram I'm thinking of?\n";
-	std::cout << std::endl;
 }
 
 void PlayGame() 
 {
 	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
-	std::cout << "You have " << MaxTries << " tries in total\n";
+	std::cout << "You have " << MaxTries << " tries in total.\n\n";
 
 	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
 		FText Guess = GetValidGuess();
@@ -68,26 +68,26 @@ FText GetValidGuess()
 	EGuessStatus Status = EGuessStatus::Invalid_Status;
 	do {
 		int32 CurrentTry = BCGame.GetCurrentTry();
-		std::cout << "Try " << CurrentTry << ". Please enter your guess: ";
+		std::cout << "Try " << CurrentTry <<  " of " << BCGame.GetMaxTries();
+		std::cout << ". Please enter your guess: ";
 		std::getline(std::cin, Guess);
 
 		Status = BCGame.CheckGuessValidity(Guess);
 		switch (Status)
 		{
 		case EGuessStatus::Wrong_Length:
-			std::cout << "Please enter a " << BCGame.GetHiddenWordLength() << " letter isogram.\n";
+			std::cout << "Please enter a " << BCGame.GetHiddenWordLength() << " letter isogram.\n\n";
 			break;
 		case EGuessStatus::Not_Isogram:
-			std::cout << "Please enter an isogram (a word without recurring letters).\n";
+			std::cout << "Please enter an isogram (a word without recurring letters).\n\n";
 			break;
 		case EGuessStatus::Not_Lowercase:
-			std::cout << "Please enter an isogram in lower case.\n";
+			std::cout << "Please enter an isogram in lower case.\n\n";
 			break;
 		default:
 			//assuming it's a valid guess
 			break;
 		}
-		std::cout << std::endl;
 	} while (Status != EGuessStatus::OK);
 	return Guess;
 }
