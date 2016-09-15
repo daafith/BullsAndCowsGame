@@ -9,7 +9,7 @@ Game Logic is in the FBullCowGame class.
 #include <string>
 #include "FBullCowGame.h"
 
-using FText = std::string; //FText is immutable
+using FText = std::string; //FText is immutable (view purpose)
 
 void PrintIntro();
 void PlayGame();
