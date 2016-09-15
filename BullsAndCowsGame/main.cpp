@@ -34,33 +34,30 @@ int main()
 
 void PrintExplanation()
 {
-	if (WinningStreak == 0)
-	{
-		std::cout << "\n\n";
-		std::cout << "###############################################\n";
-		std::cout << "# Welcome to Bulls and Cows, a fun word game! #\n";// << endl instead is OK
-		std::cout << "#    ( _____ )                :_____:         #\n";
-		std::cout << "#    ^( * * )^               ^( * * )^        #\n";
-		std::cout << "#      ( 0 )                   ( + )          #\n";
-		std::cout << "#        -                       -            #\n";
-		std::cout << "###############################################\n";
-		std::cout << std::endl;
-		std::cout << "#################################################################################\n";
-		std::cout << "# I'm thinking of an isogram right now. It's your job to guess the isogram.     #\n";
-		std::cout << "#                                                                               #\n";
-		std::cout << "# A bull indicates that a letter is in the right place. A cow indicates that a  #\n";
-		std::cout << "# letter is in the isogram I'm thinking of but it isn't in the right place.     #\n";
-		std::cout << "#                                                                               #\n";
-		std::cout << "# For example: my isogram is 'planet' and your guess is 'pardon', then your     #\n";
-		std::cout << "# score is Bulls = 1 Cows = 2.                                                  #\n";
-		std::cout << "#################################################################################\n";
-	}
+	std::cout << "\n\n";
+	std::cout << "###############################################\n";
+	std::cout << "# Welcome to Bulls and Cows, a fun word game! #\n";// << endl instead is OK
+	std::cout << "#    ( _____ )                :_____:         #\n";
+	std::cout << "#    ^( * * )^               ^( * * )^        #\n";
+	std::cout << "#      ( 0 )                   ( + )          #\n";
+	std::cout << "#        -                       -            #\n";
+	std::cout << "###############################################\n";
+	std::cout << std::endl;
+	std::cout << "#################################################################################\n";
+	std::cout << "# I'm thinking of an isogram right now. It's your job to guess the isogram.     #\n";
+	std::cout << "#                                                                               #\n";
+	std::cout << "# A bull indicates that a letter is in the right place. A cow indicates that a  #\n";
+	std::cout << "# letter is in the isogram I'm thinking of but it isn't in the right place.     #\n";
+	std::cout << "#                                                                               #\n";
+	std::cout << "# For example: my isogram is 'planet' and your guess is 'pardon', then your     #\n";
+	std::cout << "# score is Bulls = 1 Cows = 2.                                                  #\n";
+	std::cout << "#################################################################################\n";
 }
 
 void PrintIntro()
 {
 	BCGame.Reset();
-	PrintExplanation();
+	if (WinningStreak == 0) { PrintExplanation(); }
 	std::cout << std::endl;
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
 	std::cout << " letter isogram I'm thinking of?\n";
@@ -122,6 +119,7 @@ void PrintGameSummary()
 	else {
 		std::cout << "Your winning streak has ended at " << WinningStreak << ".\n";
 		std::cout << "Game over, better luck next time!\n";
+		WinningStreak = 0;
 	}
 	std::cout << std::endl;
 }
