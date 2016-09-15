@@ -43,6 +43,15 @@ void PrintIntro()
 	std::cout << "#        -                       -            #\n";
 	std::cout << "###############################################\n";
 	std::cout << std::endl;
+	std::cout << "###############################################\n";
+	std::cout << "# I'm thinking of an isogram right now. It's  #\n";
+	std::cout << "# your job to guess the isogram.              #\n";
+	std::cout << "# A bull indicates that a letter is in the    #\n";
+	std::cout << "# right place. A cow indicates that a letter  #\n";
+	std::cout << "# is in the isogram I'm thinking of but it    #\n";
+	std::cout << "# isn't in the right place.                   #\n";
+	std::cout << "###############################################\n";
+	std::cout << std::endl;
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
 	std::cout << " letter isogram I'm thinking of?\n";
 }
