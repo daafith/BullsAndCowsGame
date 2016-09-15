@@ -12,13 +12,14 @@ int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 
-FString FBullCowGame::GetHiddenWord() const 
+
+FString FBullCowGame::GetNextHiddenWord() const 
 {
 	FString HiddenWords[] = { "vet", "ant", "pun", "pen", "bug", "fun", "ton", "hit", "bar", "dog",
 		"link", "card", "plan", "exit", "team", "rain", "ward", "nerd", "bird", "quiz",
 		"train", "yacht", "under", "input", "owner", "peach", "ankle", "snake", "dough", "best",
 		"factor", "grouse", "hacker", "jacket", "larynx", "zealot", "xenopus", "calory", "wretch", "novice",
-		"vampire", "backlog", "neutral", "machine", "isogram", "frantic", "acquire", "reality", "virtual", "storage"};
+		"vampire", "backlog", "neutral", "machine", "isogram", "frantic", "acquire", "reality", "virtual", "storage" };
 	//int32 Word = rand() % (sizeof(HiddenWords) / sizeof(*HiddenWords)); // alternative but looks iffy
 	int32 Word = rand() % _countof(HiddenWords);
 	return HiddenWords[Word];
@@ -32,7 +33,7 @@ int32 FBullCowGame::GetMaxTries() const
 
 void FBullCowGame::Reset() 
 {
-	MyHiddenWord = GetHiddenWord();
+	MyHiddenWord = GetNextHiddenWord();
 	MyCurrentTry = 1;
 	bGameIsWon = false;
 	return;

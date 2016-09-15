@@ -11,6 +11,7 @@ Game Logic is in the FBullCowGame class.
 
 using FText = std::string; //FText is immutable (view purpose)
 
+void PrintExplanation();
 void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
@@ -31,26 +32,35 @@ int main()
 	return 0;
 }
 
-void PrintIntro() 
+void PrintExplanation()
+{
+	if (WinningStreak == 0)
+	{
+		std::cout << "\n\n";
+		std::cout << "###############################################\n";
+		std::cout << "# Welcome to Bulls and Cows, a fun word game! #\n";// << endl instead is OK
+		std::cout << "#    ( _____ )                :_____:         #\n";
+		std::cout << "#    ^( * * )^               ^( * * )^        #\n";
+		std::cout << "#      ( 0 )                   ( + )          #\n";
+		std::cout << "#        -                       -            #\n";
+		std::cout << "###############################################\n";
+		std::cout << std::endl;
+		std::cout << "#################################################################################\n";
+		std::cout << "# I'm thinking of an isogram right now. It's your job to guess the isogram.     #\n";
+		std::cout << "#                                                                               #\n";
+		std::cout << "# A bull indicates that a letter is in the right place. A cow indicates that a  #\n";
+		std::cout << "# letter is in the isogram I'm thinking of but it isn't in the right place.     #\n";
+		std::cout << "#                                                                               #\n";
+		std::cout << "# For example: my isogram is 'planet' and your guess is 'pardon', then your     #\n";
+		std::cout << "# score is Bulls = 1 Cows = 2.                                                  #\n";
+		std::cout << "#################################################################################\n";
+	}
+}
+
+void PrintIntro()
 {
 	BCGame.Reset();
-	std::cout << "\n\n";
-	std::cout << "###############################################\n";
-	std::cout << "# Welcome to Bulls and Cows, a fun word game! #\n";// << endl instead is OK
-	std::cout << "#    ( _____ )                :_____:         #\n";
-	std::cout << "#    ^( * * )^               ^( * * )^        #\n";
-	std::cout << "#      ( 0 )                   ( + )          #\n";
-	std::cout << "#        -                       -            #\n";
-	std::cout << "###############################################\n";
-	std::cout << std::endl;
-	std::cout << "###############################################\n";
-	std::cout << "# I'm thinking of an isogram right now. It's  #\n";
-	std::cout << "# your job to guess the isogram.              #\n";
-	std::cout << "# A bull indicates that a letter is in the    #\n";
-	std::cout << "# right place. A cow indicates that a letter  #\n";
-	std::cout << "# is in the isogram I'm thinking of but it    #\n";
-	std::cout << "# isn't in the right place.                   #\n";
-	std::cout << "###############################################\n";
+	PrintExplanation();
 	std::cout << std::endl;
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
 	std::cout << " letter isogram I'm thinking of?\n";

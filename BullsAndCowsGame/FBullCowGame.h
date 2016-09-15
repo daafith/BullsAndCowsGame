@@ -42,7 +42,7 @@ private:
 	// see constructor for initialisation
 	int32 MyCurrentTry;
 	FString MyHiddenWord;
-	FString GetHiddenWord() const;
+	FString GetNextHiddenWord() const;
 	bool bGameIsWon;
 	bool IsIsoGram(FString) const;
 	bool IsLowerCase(FString) const;
