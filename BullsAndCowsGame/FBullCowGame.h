@@ -1,6 +1,9 @@
-/*Defines the contract of the bull / cow game.*/
+/*Defines the logic of the bull / cow game. Does nothing regarding view logic or user interaction.
+The game is a simple word guess quiz based on mastermind.*/
 #pragma once
 #include <string>
+
+//Unreal naming convention
 using FString = std::string; // FString is mutable
 using int32 = int;
 
@@ -44,4 +47,3 @@ private:
 	bool IsIsoGram(FString) const;
 	bool IsLowerCase(FString) const;
 };
-

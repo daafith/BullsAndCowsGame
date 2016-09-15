@@ -1,5 +1,6 @@
 ﻿/* main.cpp : Defines the entry point for the console application.
-Uses the BullCow class and acts as the view in a MVC pattern.
+Acts as the view in a MVC pattern and is responsible for user interaction.
+Game Logic is in the FBullCowGame class.
 */
 
 #pragma once
@@ -10,10 +11,12 @@ Uses the BullCow class and acts as the view in a MVC pattern.
 
 using FText = std::string; //create alias , FText is immutable
 
+void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
 void PrintGameSummary();
 bool AskToPlayAgain();
+int32 WinningStreak = 0;
 
 FBullCowGame BCGame;
 
@@ -21,6 +24,7 @@ int main()
 {
 	bool bPlayAgain = false;
 	do {
+		PrintIntro();
 		PlayGame();
 		bPlayAgain = AskToPlayAgain();
 	} while (bPlayAgain);
@@ -29,6 +33,7 @@ int main()
 
 void PrintIntro() 
 {
+	BCGame.Reset();
 	std::cout << "\n\n";
 	std::cout << "###############################################\n";
 	std::cout << "# Welcome to Bulls and Cows, a fun word game! #\n";// << endl instead is OK
@@ -44,8 +49,6 @@ void PrintIntro()
 
 void PlayGame() 
 {
-	BCGame.Reset();
-	PrintIntro();
 	int32 MaxTries = BCGame.GetMaxTries();
 	std::cout << "You have " << MaxTries << " tries in total.\n\n";
 	
@@ -93,11 +96,15 @@ FText GetValidGuess()
 void PrintGameSummary()
 {
 	if (BCGame.IsGameWon()) {
+		++WinningStreak;
 		std::cout << "Well done champ, you guessed the isogram!\n";
+		std::cout << "Your current winning streak is " << WinningStreak << ".\n";
 	}
 	else {
+		std::cout << "Your winning streak has ended at " << WinningStreak << ".\n";
 		std::cout << "Game over, better luck next time!\n";
 	}
+	std::cout << std::endl;
 }
 
 bool AskToPlayAgain() 
@@ -107,5 +114,6 @@ bool AskToPlayAgain()
 	std::getline(std::cin, Response);
 	return (Response[0] == 'y') || (Response[0] == 'Y');
 }
+
 
 

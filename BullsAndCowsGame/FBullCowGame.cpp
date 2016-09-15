@@ -1,8 +1,9 @@
-/*Fleshes out the details of the bull / cow game.*/
 #pragma once
 #include "stdafx.h"
 #include "FBullCowGame.h"
 #include <map>
+
+//Unreal naming convention
 #define TMap std::map
 
 FBullCowGame::FBullCowGame() { Reset(); }
@@ -18,7 +19,8 @@ FString FBullCowGame::GetHiddenWord() const
 		"train", "yacht", "under", "input", "owner", "peach", "ankle", "snake", "dough", "best",
 		"factor", "grouse", "hacker", "jacket", "larynx", "zealot", "xenopus", "calory", "wretch", "novice",
 		"vampire", "backlog", "neutral", "machine", "isogram", "frantic", "acquire", "reality", "virtual", "storage"};
-	int32 Word = rand() % (sizeof(HiddenWords) / sizeof(*HiddenWords)); // need to explain this to myself
+	//int32 Word = rand() % (sizeof(HiddenWords) / sizeof(*HiddenWords)); // alternative but looks iffy
+	int32 Word = rand() % _countof(HiddenWords);
 	return HiddenWords[Word];
 }
 
@@ -36,7 +38,7 @@ void FBullCowGame::Reset()
 	return;
 }
 
-// implemented defensively: no implicit dependencies so the order of the decision can be changed without breaking implementation
+// conditions implemented defensively: no implicit dependencies so the order of the decisions can be changed without breaking implementation
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const 
 {
 	if (!IsIsoGram(Guess)) { 
@@ -77,7 +79,6 @@ bool FBullCowGame::IsLowerCase(FString Guess) const
 	return true;
 }
 
-// counts bulls and cows and increases try #, assumes valid guess
 FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 {
 	MyCurrentTry++;
@@ -101,3 +102,4 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 	}
 	return BullCowCount;
 }
+
