@@ -126,11 +126,14 @@ void PrintGameSummary()
 
 bool AskToPlayAgain() 
 {
-	std::cout << "Do you want to play again (y/n)? ";
+	FText ValidAnswers = "yYnN";
 	FText Response = "";
+	std::cout << "Do you want to play again (y/n)? ";
+
 	std::getline(std::cin, Response);
-	if (!((Response[0] == 'y') || (Response[0] == 'Y') || (Response[0] == 'n') || (Response[0] == 'N'))) { return AskToPlayAgain(); }
-	return (Response[0] == 'y') || (Response[0] == 'Y');
+	std::size_t Found = ValidAnswers.find_first_of(Response[0]);
+	if (Found >= ValidAnswers.length()) { return AskToPlayAgain(); }
+	return (Found <= 1);
 }
 
 
