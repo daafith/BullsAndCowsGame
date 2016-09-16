@@ -129,6 +129,7 @@ bool AskToPlayAgain()
 	std::cout << "Do you want to play again (y/n)? ";
 	FText Response = "";
 	std::getline(std::cin, Response);
+	if (!((Response[0] == 'y') || (Response[0] == 'Y') || (Response[0] == 'n') || (Response[0] == 'N'))) { return AskToPlayAgain(); }
 	return (Response[0] == 'y') || (Response[0] == 'Y');
 }
 
